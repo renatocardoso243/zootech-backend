@@ -1,6 +1,9 @@
 package main
 
-import "github.com/renatocardoso243/gopportunities.git/config"
+import (
+	"github.com/renatocardoso243/gopportunities.git/config"
+	"github.com/renatocardoso243/gopportunities.git/router"
+)
 
 var (
 	logger config.Logger
@@ -15,5 +18,8 @@ func main() {
 		logger.Errorf("Error to initialize config: %v", err)
 		return
 	}
+
+	// Initialize Router
+	router.Initialize()
 	
 }
