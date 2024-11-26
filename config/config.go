@@ -14,7 +14,7 @@ var (
 func Init() error {
 	var err error
 	//Initialize Postgres DB
-	db, err = InitalizePostgres()
+	db, err = InitializePostgres()
 	if err != nil {
 		return fmt.Errorf("failed to initialize postgres: %v", err)
 	}
