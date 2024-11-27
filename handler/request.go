@@ -106,3 +106,20 @@ func (r *CreateHerdRequest) Validate() error {
 	}
 	return nil
 }
+
+// UpdateHerdRequest
+type UpdateHerdRequest struct {
+	HerdName    string  `json:"herd_name"`                  // Nome do rebanho
+	Type        string  `json:"type"`                       // Tipo de rebanho
+	Description string  `json:"description"`                // Descrição do rebanho
+}
+
+// Validates UpdateHerdRequest
+func (r *UpdateHerdRequest) Validate() error {
+	// If any field provided, validation is true
+	if r.HerdName != "" || r.Type != "" || r.Description != ""  {
+		return nil
+	}
+	// If all field or a single field was empty. return false
+	return fmt.Errorf("request body is empty or malformed")
+}
