@@ -1,33 +1,31 @@
 package schemas
 
 import (
-	"time"
-
 	"gorm.io/gorm"
 )
 
 // Estrutura para os animais
 type Animal struct {
 	gorm.Model
-	ID			uint			`gorm:"primaryKey"`                 // Inclui campos como ID, CreatedAt, UpdatedAt e DeletedAt
+	ID			uint			`gorm:"primaryKey"`                 
 	Name        string         `json:"name"`
-	Tag         string         `json:"tag" gorm:"unique"` // Tag deve ser única
+	Tag         string         `json:"tag" gorm:"unique"`
 	Race        string         `json:"race"`
 	Weight      int64          `json:"weight"`
 	Sex         string         `json:"sex"`
 	Birthdate   string      	`json:"birth_date"`
-	Vaccinated  string          `json:"vaccinated"`        // Nome corrigido para "Vaccinated"
-	Health    	string          `json:"health"`         // Chave estrangeira para HealthStatus
+	Vaccinated  string          `json:"vaccinated"`       
+	Health    	string          `json:"health"`         
 	HerdID      uint           `json:"herd_id"`           // Chave estrangeira para Herd
 	Observation string         `json:"observation"`
 
-	// Relacionamentos 
-	Herd   *Herd         `json:"herd,omitempty" gorm:"foreignKey:HerdID"`     // Relacionamento com Herd
+	Herd   		*Herd         `json:"herd,omitempty" gorm:"foreignKey:HerdID"`     // Relacionamento com Herd
 }
 
 
 // Estrutura para rebanhos
 type Herd struct {
+	gorm.Model
 	ID          uint    `gorm:"primaryKey"` // Chave primária
 	HerdName    string  `json:"herd_name"`
 	Type        string  `json:"type"`
@@ -37,24 +35,28 @@ type Herd struct {
 
 // Dieta individual para um animal
 type IndividualDiet struct {
+	gorm.Model
 	ID          uint      `gorm:"primaryKey"` // Chave primária
 	DietName    string    `json:"diet_name"`
 	Type        string    `json:"type"`
-	StartDate   time.Time `json:"start_date"`
-	EndDate     time.Time `json:"end_date"`
+	StartDate   string 		`json:"start_date"`
+	EndDate     string 		`json:"end_date"`
 	Description string    `json:"description"`
 	AnimalID    uint      `json:"animal_id"`  // Chave estrangeira para Animal
+
 	Animal      *Animal   `json:"animal,omitempty" gorm:"foreignKey:AnimalID"` // Relacionamento com Animal
 }
 
 // Dieta de grupo para um rebanho
 type GroupDiet struct {
+	gorm.Model
 	ID          uint      `gorm:"primaryKey"` // Chave primária
 	DietName    string    `json:"diet_name"`
 	Type        string    `json:"type"`
-	StartDate   time.Time `json:"start_date"`
-	EndDate     time.Time `json:"end_date"`
+	StartDate   string `json:"start_date"`
+	EndDate     string `json:"end_date"`
 	Description string    `json:"description"`
 	HerdID      uint      `json:"herd_id"`    // Chave estrangeira para Herd
+	
 	Herd        *Herd     `json:"herd,omitempty" gorm:"foreignKey:HerdID"` // Relacionamento com Herd
 }
