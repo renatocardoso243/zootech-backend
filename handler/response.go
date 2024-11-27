@@ -28,6 +28,8 @@ type ErrorResponse struct {
 	ErrorCode 	string `json:"errorCode"`
 }
 
+
+// Animal
 type CreateAnimalResponse struct {
 	Message string `json:"message"`
 	Data 	schemas.Animal `json:"data"`
@@ -48,4 +50,56 @@ type ListAnimalsResponse struct {
 type UpdateAnimalResponse struct {
 	Message string `json:"message"`
 	Data 	schemas.Animal `json:"data"`
+}
+
+// Herd
+type CreateHerdResponse struct {
+	Message string `json:"message"`
+	Data 	schemas.Herd `json:"data"`
+}
+
+type DeleteHerdResponse struct {
+	Message string `json:"message"`
+	Data 	schemas.Herd `json:"data"`
+}
+
+type ShowHerdResponse struct {
+	Message string `json:"message"`
+	Data 	schemas.Herd `json:"data"`
+}
+
+type ListHerdsResponse struct {
+	Message string `json:"message"`
+	Data 	[]schemas.Herd `json:"data"`
+}
+
+type UpdateHerdResponse struct {
+	Message string `json:"message"`
+	Data 	schemas.Herd `json:"data"`
+}
+
+//Diet
+type CreateIndividualDietResponse struct {
+	Message string `json:"message"`
+	Data 	schemas.IndividualDiet `json:"data"`
+}
+
+type DeleteIndividualDietResponse struct {
+	Message string `json:"message"`
+	Data 	schemas.IndividualDiet `json:"data"`
+}
+
+type ShowIndividualDietResponse struct {
+	Message string `json:"message"`
+	Data 	schemas.IndividualDiet `json:"data"`
+}
+
+type ListIndividualDietsResponse struct {
+	Message string `json:"message"`
+	Data 	[]schemas.IndividualDiet `json:"data"`
+}
+
+type UpdateIndividualDietResponse struct {
+	Message string `json:"message"`
+	Data 	schemas.IndividualDiet `json:"data"`
 }
