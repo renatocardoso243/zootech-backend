@@ -1,6 +1,8 @@
 package handler
 
-import "fmt"
+import (
+	"fmt"
+)
 
 func errParamIsRequired(name, typ string) error {
 	return fmt.Errorf("param: %s (type: %s) is required", name, typ)
@@ -118,6 +120,62 @@ type UpdateHerdRequest struct {
 func (r *UpdateHerdRequest) Validate() error {
 	// If any field provided, validation is true
 	if r.HerdName != "" || r.Type != "" || r.Description != ""  {
+		return nil
+	}
+	// If all field or a single field was empty. return false
+	return fmt.Errorf("request body is empty or malformed")
+}
+
+// Create individual diet request
+type CreateIndividualDietRequest struct {
+	DietName    string  `json:"diet_name"`
+	Type        string  `json:"type"`
+	StartDate   string  `json:"start_date"`
+	EndDate     string  `json:"end_date"`
+	Description string  `json:"description"`
+	AnimalID    uint    `json:"animal_id"`
+}
+
+// Create individual diet request validation
+func (r *CreateIndividualDietRequest) Validate() error {
+	if r.DietName == "" && r.Type == "" && r.StartDate == "" && r.EndDate == "" && r.Description == "" && r.AnimalID == 0 {
+		return fmt.Errorf("request body is empty or malformed")
+	}
+	if r.DietName == "" {
+		return errParamIsRequired("diet_name", "string")
+	}
+	if r.Type == "" {
+		return errParamIsRequired("type", "string")
+	}
+	if r.StartDate == "" {
+		return errParamIsRequired("start_date", "string")
+	}
+	if r.EndDate == "" {
+		return errParamIsRequired("end_date", "string")
+	}
+	if r.Description == "" {
+		return errParamIsRequired("description", "string")
+	}
+	if r.AnimalID == 0 {
+		return errParamIsRequired("animal_id", "uint")
+	}
+	return nil
+}
+
+
+// Update individual diet request
+type UpdateIndividualDietRequest struct {
+	DietName    string  `json:"diet_name"`
+	Type        string  `json:"type"`
+	StartDate   string  `json:"start_date"`
+	EndDate     string  `json:"end_date"`
+	Description string  `json:"description"`
+}
+
+// Update individual diet request validation
+func (r *UpdateIndividualDietRequest) Validate() error {
+	// If any field provided, validation is true
+	if r.DietName != "" || r.Type != "" || r.StartDate != "" || r.EndDate != "" || r.Description != ""  {
 		return nil
 	}
 	// If all field or a single field was empty. return false

@@ -24,5 +24,11 @@ func initializeRoutes(router *gin.Engine) {
 		v1.DELETE("/herd", handler.DeleteHerdHandler)
 		v1.PUT("/herd", handler.UpdateHerdHandler)
 		v1.GET("/herds", handler.ListHerdsHandler)
+		// Diet routes
+		v1.POST("/diet", handler.CreateIndividualDietHandler)
+		v1.GET("/diet", handler.ShowIndividualDietHandler)
+		v1.DELETE("/diet", handler.DeleteIndividualDietHandler)
+		v1.PUT("/diet", handler.UpdateIndividualDietHandler)
+		v1.GET("/diets", handler.ListIndividualDietsHandler)
 	}
 }
