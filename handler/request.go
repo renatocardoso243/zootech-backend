@@ -53,7 +53,34 @@ func (r *CreateAnimalRequest) Validate() error {
 	if r.HerdID == 0 {
 		return errParamIsRequired("herd_id", "uint")
 	}
+	if r.Observation == "" {
+		return errParamIsRequired("observation", "string")
+	}
 	return nil
+}
+
+// UpdateAnimalRequest
+type UpdateAnimalRequest struct {
+	Name        string  `json:"name"`                  
+	Tag         string  `json:"tag"`
+	Race        string  `json:"race"`                  
+	Weight      int64   `json:"weight"`                
+	Sex         string  `json:"sex"`                   
+	Birthdate   string  `json:"birth_date"`                 
+	Vaccinated  string   `json:"vaccinated"`                 
+	Health    	string  `json:"health"`
+	HerdID      uint    `json:"herd_id"`                    
+	Observation string  `json:"observation"`               
+}
+
+// Validates UpdateAnimalRequest
+func (r *UpdateAnimalRequest) Validate() error {
+	// If any field provided, validation is true
+	if r.Name != "" || r.Tag != "" || r.Race != "" || r.Weight != 0 || r.Sex != "" || r.Birthdate != "" || r.Vaccinated != "" || r.Health != "" || r.HerdID != 0 || r.Observation != ""  {
+		return nil
+	}
+	// If all fields are empty. return false
+	return fmt.Errorf("request body is empty or malformed")
 }
 
 // CreateHerdRequest

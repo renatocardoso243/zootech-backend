@@ -8,13 +8,14 @@ import (
 
 // Estrutura para os animais
 type Animal struct {
-	gorm.Model                 // Inclui campos como ID, CreatedAt, UpdatedAt e DeletedAt
+	gorm.Model
+	ID			uint			`gorm:"primaryKey"`                 // Inclui campos como ID, CreatedAt, UpdatedAt e DeletedAt
 	Name        string         `json:"name"`
 	Tag         string         `json:"tag" gorm:"unique"` // Tag deve ser única
 	Race        string         `json:"race"`
 	Weight      int64          `json:"weight"`
 	Sex         string         `json:"sex"`
-	Birthdate   string      	`json:"birthdate"`
+	Birthdate   string      	`json:"birth_date"`
 	Vaccinated  string          `json:"vaccinated"`        // Nome corrigido para "Vaccinated"
 	Health    	string          `json:"health"`         // Chave estrangeira para HealthStatus
 	HerdID      uint           `json:"herd_id"`           // Chave estrangeira para Herd

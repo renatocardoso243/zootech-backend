@@ -15,7 +15,7 @@ func initializeRoutes(router *gin.Engine) {
 		// Animais
 		v1.POST("/animal", handler.CreateAnimalHandler)
 		v1.GET("/animal", handler.ShowAnimalHandler)
-		v1.DELETE("/amimal", handler.DeleteAnimalHandler)
+		v1.DELETE("/animal", handler.DeleteAnimalHandler)
 		v1.PUT("/animal", handler.UpdateAnimalHandler)
 		v1.GET("/animals", handler.ListAnimalsHandler)
 		// Rebanho
