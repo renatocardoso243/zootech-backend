@@ -181,3 +181,59 @@ func (r *UpdateIndividualDietRequest) Validate() error {
 	// If all field or a single field was empty. return false
 	return fmt.Errorf("request body is empty or malformed")
 }
+
+
+// Create group diet request
+type CreateGroupDietRequest struct {
+	DietName    string  `json:"diet_name"`
+	Type        string  `json:"type"`
+	StartDate   string  `json:"start_date"`
+	EndDate     string  `json:"end_date"`
+	Description string  `json:"description"`
+	HerdID    uint    `json:"herd_id"`
+}
+
+// Create group diet request validation
+func (r *CreateGroupDietRequest) Validate() error {
+	if r.DietName == "" && r.Type == "" && r.StartDate == "" && r.EndDate == "" && r.Description == "" && r.HerdID == 0 {
+		return fmt.Errorf("request body is empty or malformed")
+	}
+	if r.DietName == "" {
+		return errParamIsRequired("diet_name", "string")
+	}
+	if r.Type == "" {
+		return errParamIsRequired("type", "string")
+	}
+	if r.StartDate == "" {
+		return errParamIsRequired("start_date", "string")
+	}
+	if r.EndDate == "" {
+		return errParamIsRequired("end_date", "string")
+	}
+	if r.Description == "" {
+		return errParamIsRequired("description", "string")
+	}
+	if r.HerdID == 0 {
+		return errParamIsRequired("herd_id", "uint")
+	}
+	return nil
+}
+
+// Update group diet request
+type UpdateGroupDietRequest struct {
+	DietName    string  `json:"diet_name"`
+	Type        string  `json:"type"`
+	StartDate   string  `json:"start_date"`
+	EndDate     string  `json:"end_date"`
+	Description string  `json:"description"`
+}
+
+// Update group diet request validation
+func (r *UpdateGroupDietRequest) Validate() error {
+	// If any field provided, validation is true
+	if r.DietName != "" || r.Type != "" || r.StartDate != "" || r.EndDate != "" || r.Description != ""  {
+		return nil
+	}
+	// If all field or a single field was empty. return false
+	return fmt.Errorf("request body is empty or malformed")
+}
