@@ -16,7 +16,7 @@ func DeleteIndividualDietHandler(ctx *gin.Context) {
 	}
 
 	//Find herd
-	individualDiet := schemas.IndividualDiet{}
+	individualDiet := schemas.Diet{}
 	if err := db.First(&individualDiet, id).Error; err != nil {
 		sendError(ctx, http.StatusNotFound, fmt.Sprintf("diet with id: %s not found", id))
 		return

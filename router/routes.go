@@ -16,7 +16,7 @@ func initializeRoutes(router *gin.Engine) {
 		v1.POST("/animals/create/", handler.CreateAnimalHandler)
 		v1.GET("/animal", handler.ShowAnimalHandler)
 		v1.DELETE("/animal", handler.DeleteAnimalHandler)
-		v1.PUT("/animal", handler.UpdateAnimalHandler)
+		v1.PUT("/animals/update/", handler.UpdateAnimalHandler)
 		v1.GET("/animals", handler.ListAnimalsHandler)
 		v1.GET("/animals-by-herd/:id", handler.ListAnimalsByHerdHandler)
 		// Herd routes
@@ -31,11 +31,7 @@ func initializeRoutes(router *gin.Engine) {
 		v1.DELETE("/diet", handler.DeleteIndividualDietHandler)
 		v1.PUT("/diet", handler.UpdateIndividualDietHandler)
 		v1.GET("/diets", handler.ListIndividualDietsHandler)
-		// Group diets routes
-		v1.POST("/group-diet", handler.CreateGroupDietHandler)
-		v1.GET("/group-diet", handler.ShowGroupDietHandler)
-		v1.DELETE("/group-diet", handler.DeleteGroupDietHandler)
-		v1.PUT("/group-diet", handler.UpdateGroupDietHandler)
-		v1.GET("/group-diets", handler.ListGroupDietsHandler)
+	
+
 	}
 }

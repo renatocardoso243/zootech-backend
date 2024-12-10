@@ -81,51 +81,26 @@ type UpdateHerdResponse struct {
 //Diet
 type CreateIndividualDietResponse struct {
 	Message string `json:"message"`
-	Data 	schemas.IndividualDiet `json:"data"`
+	Data 	schemas.Diet `json:"data"`
 }
 
 type DeleteIndividualDietResponse struct {
 	Message string `json:"message"`
-	Data 	schemas.IndividualDiet `json:"data"`
+	Data 	schemas.Diet `json:"data"`
 }
 
 type ShowIndividualDietResponse struct {
 	Message string `json:"message"`
-	Data 	schemas.IndividualDiet `json:"data"`
+	Data 	schemas.Diet `json:"data"`
 }
 
 type ListIndividualDietsResponse struct {
 	Message string `json:"message"`
-	Data 	[]schemas.IndividualDiet `json:"data"`
+	Data 	[]schemas.Diet `json:"data"`
 }
 
 type UpdateIndividualDietResponse struct {
 	Message string `json:"message"`
-	Data 	schemas.IndividualDiet `json:"data"`
+	Data 	schemas.Diet `json:"data"`
 }
 
-// GroupDiet
-type CreateGroupDietResponse struct {
-	Message string `json:"message"`
-	Data 	schemas.GroupDiet `json:"data"`
-}
-
-type DeleteGroupDietResponse struct {
-	Message string `json:"message"`
-	Data 	schemas.GroupDiet `json:"data"`
-}
-
-type ShowGroupDietResponse struct {
-	Message string `json:"message"`
-	Data 	schemas.GroupDiet `json:"data"`
-}
-
-type ListGroupDietsResponse struct {
-	Message string `json:"message"`
-	Data 	[]schemas.GroupDiet `json:"data"`
-}
-
-type UpdateGroupDietResponse struct {
-	Message string `json:"message"`
-	Data 	schemas.GroupDiet `json:"data"`
-}

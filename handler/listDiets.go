@@ -7,13 +7,13 @@ import (
 	"github.com/renatocardoso243/gopportunities.git/schemas"
 )
 
-func ListGroupDietsHandler(ctx *gin.Context) {
-	groupDiet := []schemas.GroupDiet{}
+func ListIndividualDietsHandler(ctx *gin.Context) {
+	individualDiet := []schemas.Diet{}
 
-	if err:= db.Find(&groupDiet).Error; err != nil {
+	if err:= db.Find(&individualDiet).Error; err != nil {
 		sendError(ctx, http.StatusInternalServerError, "error to list diets")
 		return
 	}
 
-	sendSuccess(ctx, "list diets", groupDiet)
+	sendSuccess(ctx, "list diets", individualDiet)
 }

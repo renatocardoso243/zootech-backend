@@ -34,29 +34,13 @@ type Herd struct {
 }
 
 // Dieta individual para um animal
-type IndividualDiet struct {
+type Diet struct {
 	gorm.Model
-	ID          uint      `gorm:"primaryKey"` 
-	DietName    string    `json:"diet_name"`
-	Type        string    `json:"type"`
-	StartDate   string 	  `json:"start_date"`
-	EndDate     string 	  `json:"end_date"`
-	Description string    `json:"description"`
-	AnimalID    uint      `json:"animal_id"`  // Chave estrangeira para Animal
-
-	Animal      *Animal   `json:"animal,omitempty" gorm:"foreignKey:AnimalID"` // Relacionamento com Animal
+	ID          	uint      `gorm:"primaryKey"` 
+	DietName    	string    `json:"diet_name"`
+	AnimalType  	string    `json:"animal_type"`
+	Objective    	string    `json:"objective"`
+	Ingredients 	string    `json:"ingredients"`
+	NutritionalInfo string 	  `json:"nutritional_info"`
 }
 
-// Dieta de grupo para um rebanho
-type GroupDiet struct {
-	gorm.Model
-	ID          uint      `gorm:"primaryKey"` 
-	DietName    string    `json:"diet_name"`
-	Type        string    `json:"type"`
-	StartDate   string 	  `json:"start_date"`
-	EndDate     string    `json:"end_date"`
-	Description string    `json:"description"`
-	HerdID      uint      `json:"herd_id"`    // Chave estrangeira para Herd
-	
-	Herd        *Herd     `json:"herd,omitempty" gorm:"foreignKey:HerdID"` // Relacionamento com Herd
-}

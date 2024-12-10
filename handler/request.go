@@ -127,55 +127,51 @@ func (r *UpdateHerdRequest) Validate() error {
 }
 
 // Create individual diet request
-type CreateIndividualDietRequest struct {
-	DietName    string  `json:"diet_name"`
-	Type        string  `json:"type"`
-	StartDate   string  `json:"start_date"`
-	EndDate     string  `json:"end_date"`
-	Description string  `json:"description"`
-	AnimalID    uint    `json:"animal_id"`
+type CreateDietRequest struct {
+	DietName    	string    `json:"diet_name"`
+	AnimalType  	string    `json:"animal_type"`
+	Objective    	string    `json:"objective"`
+	Ingredients 	string    `json:"ingredients"`
+	NutritionalInfo string 	  `json:"nutritional_info"`
 }
 
 // Create individual diet request validation
-func (r *CreateIndividualDietRequest) Validate() error {
-	if r.DietName == "" && r.Type == "" && r.StartDate == "" && r.EndDate == "" && r.Description == "" && r.AnimalID == 0 {
+func (r *CreateDietRequest) Validate() error {
+	if r.DietName == "" && r.AnimalType == "" && r.Objective == "" && r.Ingredients == "" && r.NutritionalInfo == "" {
 		return fmt.Errorf("request body is empty or malformed")
 	}
 	if r.DietName == "" {
 		return errParamIsRequired("diet_name", "string")
 	}
-	if r.Type == "" {
+	if r.AnimalType == "" {
 		return errParamIsRequired("type", "string")
 	}
-	if r.StartDate == "" {
+	if r.Objective == "" {
 		return errParamIsRequired("start_date", "string")
 	}
-	if r.EndDate == "" {
+	if r.Ingredients == "" {
 		return errParamIsRequired("end_date", "string")
 	}
-	if r.Description == "" {
+	if r.NutritionalInfo == "" {
 		return errParamIsRequired("description", "string")
-	}
-	if r.AnimalID == 0 {
-		return errParamIsRequired("animal_id", "uint")
 	}
 	return nil
 }
 
 
 // Update individual diet request
-type UpdateIndividualDietRequest struct {
-	DietName    string  `json:"diet_name"`
-	Type        string  `json:"type"`
-	StartDate   string  `json:"start_date"`
-	EndDate     string  `json:"end_date"`
-	Description string  `json:"description"`
+type UpdateDietRequest struct {
+	DietName    	string    `json:"diet_name"`
+	AnimalType  	string    `json:"animal_type"`
+	Objective    	string    `json:"objective"`
+	Ingredients 	string    `json:"ingredients"`
+	NutritionalInfo string 	  `json:"nutritional_info"`
 }
 
 // Update individual diet request validation
-func (r *UpdateIndividualDietRequest) Validate() error {
+func (r *UpdateDietRequest) Validate() error {
 	// If any field provided, validation is true
-	if r.DietName != "" || r.Type != "" || r.StartDate != "" || r.EndDate != "" || r.Description != ""  {
+	if r.DietName != "" || r.AnimalType != "" || r.Objective != "" || r.Ingredients != "" || r.NutritionalInfo != "" {
 		return nil
 	}
 	// If all field or a single field was empty. return false

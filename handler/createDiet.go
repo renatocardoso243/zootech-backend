@@ -8,7 +8,7 @@ import (
 )
 
 func CreateIndividualDietHandler(ctx *gin.Context) {
-	request := CreateIndividualDietRequest{}
+	request := CreateDietRequest{}
 
 	ctx.BindJSON(&request)
 
@@ -18,13 +18,12 @@ func CreateIndividualDietHandler(ctx *gin.Context) {
 		return
 	}
 
-	individualDiet := schemas.IndividualDiet{
-		DietName:    request.DietName,
-		Type:        request.Type,
-		StartDate:   request.StartDate,
-		EndDate:     request.EndDate,
-		Description: request.Description,
-		AnimalID:    request.AnimalID,
+	individualDiet := schemas.Diet{
+		DietName:    		request.DietName,
+		AnimalType:  		request.AnimalType,
+		Objective:    		request.Objective,
+		Ingredients: 		request.Ingredients,
+		NutritionalInfo: 	request.NutritionalInfo,
 	}
 	
 	if err := db.Create(&individualDiet).Error; err != nil {

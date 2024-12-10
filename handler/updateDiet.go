@@ -7,8 +7,8 @@ import (
 	"github.com/renatocardoso243/gopportunities.git/schemas"
 )
 
-func UpdateGroupDietHandler(ctx *gin.Context) {
-	request := UpdateGroupDietRequest{}
+func UpdateIndividualDietHandler(ctx *gin.Context) {
+	request := UpdateDietRequest{}
 
 	ctx.BindJSON(&request)
 
@@ -24,39 +24,39 @@ func UpdateGroupDietHandler(ctx *gin.Context) {
 		return
 	}
 
-	groupDiet := schemas.GroupDiet{}
-	if err := db.First(&groupDiet, id).Error; err != nil {
+	diet := schemas.Diet{}
+	if err := db.First(&diet, id).Error; err != nil {
 		sendError(ctx, http.StatusNotFound, "diet not found")
 		return
 	}
 
 	// Update diet
 	if request.DietName != "" {
-		groupDiet.DietName = request.DietName 
+		diet.DietName = request.DietName 
 	}
 
-	if request.Type != "" {
-		groupDiet.Type = request.Type
+	if request.AnimalType != "" {
+		diet.AnimalType = request.AnimalType
 	}
 
-	if request.StartDate != "" {
-		groupDiet.StartDate = request.StartDate
+	if request.Objective != "" {
+		diet.Objective = request.Objective
 	}
 
-	if request.EndDate != "" {
-		groupDiet.EndDate = request.EndDate
+	if request.Ingredients != "" {
+		diet.Ingredients = request.Ingredients
 	}
 
-	if request.Description != "" {
-		groupDiet.Description = request.Description
+	if request.NutritionalInfo != "" {
+		diet.NutritionalInfo = request.NutritionalInfo
 	}
 
 	// Save diet
-	if err := db.Save(&groupDiet).Error; err != nil {
+	if err := db.Save(&diet).Error; err != nil {
 		logger.Errorf("Error to update diet: %v", err.Error())
 		sendError(ctx, http.StatusInternalServerError, "error updating diet on database")
 		return
 	}
 
-	sendSuccess(ctx, "diet updated", groupDiet)
+	sendSuccess(ctx, "diet updated", diet)
 }
