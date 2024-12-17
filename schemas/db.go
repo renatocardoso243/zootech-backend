@@ -4,6 +4,15 @@ import (
 	"gorm.io/gorm"
 )
 
+// Estrutura do usuário
+type User struct {
+	ID        uint   `gorm:"primaryKey"` // Chave primária
+	FirstName string `json:"first_name"`
+	LastName  string `json:"last_name"`
+	Email     string `json:"email" gorm:"unique;not null"` // Campo único e obrigatório
+	Password  string `json:"password"`
+}
+
 // Estrutura para os animais
 type Animal struct {
 	gorm.Model
@@ -18,7 +27,7 @@ type Animal struct {
 	Health    	string         `json:"health"`         
 	HerdID      uint           `json:"herd_id"`           // Chave estrangeira para Herd
 	Observation string         `json:"observation"`
-
+	
 	Herd   		*Herd         `json:"herd,omitempty" gorm:"foreignKey:HerdID"`     // Relacionamento com Herd
 }
 
@@ -42,5 +51,18 @@ type Diet struct {
 	Objective    	string    `json:"objective"`
 	Ingredients 	string    `json:"ingredients"`
 	NutritionalInfo string 	  `json:"nutritional_info"`
+}
+
+type Weight struct {
+	gorm.Model
+	ID 			uint 		`gorm:"primaryKey"`
+	Data 		string 		`json:"data"`
+	TotalWeight string 		`json:"total_weight"`
+	Gain 		string 		`json:"gain"`
+	Loss 		string		`json:"loss"`
+	AnimalID    uint		`json:"animal_id"`
+
+	Animal 		*Animal 	`json:"animal,omitempty" gorm:"foreignKey:AnimalID"`
+
 }
 

@@ -179,55 +179,52 @@ func (r *UpdateDietRequest) Validate() error {
 }
 
 
-// Create group diet request
-type CreateGroupDietRequest struct {
-	DietName    string  `json:"diet_name"`
-	Type        string  `json:"type"`
-	StartDate   string  `json:"start_date"`
-	EndDate     string  `json:"end_date"`
-	Description string  `json:"description"`
-	HerdID    uint    `json:"herd_id"`
+
+// Create weight request
+type CreateWeightRequest struct {
+	Data 		string 		`json:"data"`
+	TotalWeight string 		`json:"total_weight"`
+	Gain 		string 		`json:"gain"`
+	Loss 		string 		`json:"loss"`
+	AnimalID 	uint 		`json:"animal_id"`
 }
 
-// Create group diet request validation
-func (r *CreateGroupDietRequest) Validate() error {
-	if r.DietName == "" && r.Type == "" && r.StartDate == "" && r.EndDate == "" && r.Description == "" && r.HerdID == 0 {
+// Create weight request validation
+func (r *CreateWeightRequest) Validate() error {
+	if r.Data == "" && r.TotalWeight == "" && r.Gain == "" && r.Loss == "" && r.AnimalID == 0 {
 		return fmt.Errorf("request body is empty or malformed")
 	}
-	if r.DietName == "" {
-		return errParamIsRequired("diet_name", "string")
+	if r.Data == "" {
+		return errParamIsRequired("data", "string")
 	}
-	if r.Type == "" {
-		return errParamIsRequired("type", "string")
+	if r.TotalWeight == "" {
+		return errParamIsRequired("total_weight", "int64")
 	}
-	if r.StartDate == "" {
-		return errParamIsRequired("start_date", "string")
+	if r.Gain == "" {
+		return errParamIsRequired("gain", "int64")
 	}
-	if r.EndDate == "" {
-		return errParamIsRequired("end_date", "string")
+	if r.Loss == "" {
+		return errParamIsRequired("loss", "int64")
 	}
-	if r.Description == "" {
-		return errParamIsRequired("description", "string")
-	}
-	if r.HerdID == 0 {
-		return errParamIsRequired("herd_id", "uint")
+	if r.AnimalID == 0 {
+		return errParamIsRequired("animal_id", "uint")	
 	}
 	return nil
 }
 
-// Update group diet request
-type UpdateGroupDietRequest struct {
-	DietName    string  `json:"diet_name"`
-	Type        string  `json:"type"`
-	StartDate   string  `json:"start_date"`
-	EndDate     string  `json:"end_date"`
-	Description string  `json:"description"`
+// Update weight request
+type UpdateWeightRequest struct {
+	Data 		string 		`json:"data"`
+	TotalWeight string 		`json:"total_weight"`
+	Gain 		string 		`json:"gain"`
+	Loss 		string		`json:"loss"`
+	AnimalID 	uint 		`json:"animal_id"`
 }
 
-// Update group diet request validation
-func (r *UpdateGroupDietRequest) Validate() error {
+// Update weight request validation
+func (r *UpdateWeightRequest) Validate() error {
 	// If any field provided, validation is true
-	if r.DietName != "" || r.Type != "" || r.StartDate != "" || r.EndDate != "" || r.Description != ""  {
+	if r.Data != "" || r.TotalWeight != "" || r.Gain != "" || r.Loss != "" || r.AnimalID != 0 {
 		return nil
 	}
 	// If all field or a single field was empty. return false
