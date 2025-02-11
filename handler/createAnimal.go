@@ -18,6 +18,13 @@ func CreateAnimalHandler(ctx *gin.Context) {
 		return
 	}
 
+	var existingAnimal schemas.Animal
+	if err := db.Where("tag = ?", request.Tag).First(&existingAnimal).Error; err == nil {
+		logger.Errorf("Tag already exists: %v", request.Tag)
+		sendError(ctx, http.StatusBadRequest, "Tag já esta em uso.")
+		return
+	}
+
 	// create animal
 	animal := schemas.Animal{
 		Name:        request.Name,
@@ -31,6 +38,7 @@ func CreateAnimalHandler(ctx *gin.Context) {
 		HerdID:      request.HerdID,
 		Observation: request.Observation,
 	}
+	
 
 	if err := db.Create(&animal).Error; err != nil {
 		logger.Errorf("Error to create animal: %v", err.Error())

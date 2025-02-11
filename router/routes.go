@@ -39,5 +39,15 @@ func initializeRoutes(router *gin.Engine) {
 		v1.DELETE("/weight", handler.DeleteWeightHandler)
 		v1.PUT("/weights/update/", handler.UpdateWeightHandler)
 		v1.GET("/weights", handler.ListWeightsHanlder)
+		v1.GET("/weights-by-animal/:id", handler.ListWeightByAnimalHandler)
+
+		// User routes
+
+		// Employee routes
+		v1.POST("/employees/create/", handler.CreateEmployeeHandler)
+		v1.GET("/employee", handler.ShowEmployeeHandler)
+		v1.DELETE("/employee", handler.DeleteEmployeeHandler)
+		v1.PUT("/employees/update/", handler.UpdateEmployeeHandler)
+		v1.GET("/employees", handler.ListEmployeeHandler)
 	}
 }

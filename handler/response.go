@@ -11,96 +11,120 @@ import (
 func sendError(ctx *gin.Context, code int, msg string) {
 
 	ctx.JSON(code, gin.H{
-		"message": msg,
-		"errorCode": code, 
+		"message":   msg,
+		"errorCode": code,
 	})
 }
 
 func sendSuccess(ctx *gin.Context, op string, data interface{}) {
 	ctx.Header("Content-type", "application/json")
 	ctx.JSON(http.StatusOK, gin.H{
-		"message": fmt.Sprintf("operation from handler:  %s successfull", op), 
-		"data": data,})
+		"message": fmt.Sprintf("operation from handler:  %s successfull", op),
+		"data":    data})
 }
 
 type ErrorResponse struct {
-	Message 	string `json:"message"`
-	ErrorCode 	string `json:"errorCode"`
+	Message   string `json:"message"`
+	ErrorCode string `json:"errorCode"`
 }
-
 
 // Animal
 type CreateAnimalResponse struct {
-	Message string `json:"message"`
-	Data 	schemas.Animal `json:"data"`
+	Message string         `json:"message"`
+	Data    schemas.Animal `json:"data"`
 }
 type DeleteAnimalResponse struct {
-	Message string `json:"message"`
-	Data 	schemas.Animal `json:"data"`
+	Message string         `json:"message"`
+	Data    schemas.Animal `json:"data"`
 }
 type ShowAnimalResponse struct {
-	Message string `json:"message"`
-	Data 	schemas.Animal `json:"data"`
+	Message string         `json:"message"`
+	Data    schemas.Animal `json:"data"`
 }
 type ListAnimalsResponse struct {
-	Message string `json:"message"`
-	Data 	[]schemas.Animal `json:"data"`
+	Message string           `json:"message"`
+	Data    []schemas.Animal `json:"data"`
 }
 
 type UpdateAnimalResponse struct {
-	Message string `json:"message"`
-	Data 	schemas.Animal `json:"data"`
+	Message string         `json:"message"`
+	Data    schemas.Animal `json:"data"`
+}
+
+// Employee
+type CreateEmployeeResponse struct {
+	Message string           `json:"message"`
+	Data    schemas.Employee `json:"data"`
+}
+
+type DeleteEmployeeResponse struct {
+	Message string           `json:"message"`
+	Data    schemas.Employee `json:"data"`
+}
+
+type ShowEmployeeResponse struct {
+	Message string           `json:"message"`
+	Data    schemas.Employee `json:"data"`
+}
+
+type ListEmployeeResponse struct {
+	Message string             `json:"message"`
+	Data    []schemas.Employee `json:"data"`
+}
+
+type UpdateEmployeeResponse struct {
+	Message string           `json:"message"`
+	Data    schemas.Employee `json:"data"`
 }
 
 // Herd
 type CreateHerdResponse struct {
-	Message string `json:"message"`
-	Data 	schemas.Herd `json:"data"`
+	Message string       `json:"message"`
+	Data    schemas.Herd `json:"data"`
 }
 
 type DeleteHerdResponse struct {
-	Message string `json:"message"`
-	Data 	schemas.Herd `json:"data"`
+	Message string       `json:"message"`
+	Data    schemas.Herd `json:"data"`
 }
 
 type ShowHerdResponse struct {
-	Message string `json:"message"`
-	Data 	schemas.Herd `json:"data"`
+	Message string       `json:"message"`
+	Data    schemas.Herd `json:"data"`
 }
 
 type ListHerdsResponse struct {
-	Message string `json:"message"`
-	Data 	[]schemas.Herd `json:"data"`
+	Message string         `json:"message"`
+	Data    []schemas.Herd `json:"data"`
 }
 
 type UpdateHerdResponse struct {
-	Message string `json:"message"`
-	Data 	schemas.Herd `json:"data"`
+	Message string       `json:"message"`
+	Data    schemas.Herd `json:"data"`
 }
 
-//Diet
+// Diet
 type CreateIndividualDietResponse struct {
-	Message string `json:"message"`
-	Data 	schemas.Diet `json:"data"`
+	Message string       `json:"message"`
+	Data    schemas.Diet `json:"data"`
 }
 
 type DeleteIndividualDietResponse struct {
-	Message string `json:"message"`
-	Data 	schemas.Diet `json:"data"`
+	Message string       `json:"message"`
+	Data    schemas.Diet `json:"data"`
 }
 
 type ShowIndividualDietResponse struct {
-	Message string `json:"message"`
-	Data 	schemas.Diet `json:"data"`
+	Message string       `json:"message"`
+	Data    schemas.Diet `json:"data"`
 }
 
 type ListIndividualDietsResponse struct {
-	Message string `json:"message"`
-	Data 	[]schemas.Diet `json:"data"`
+	Message string         `json:"message"`
+	Data    []schemas.Diet `json:"data"`
 }
 
 type UpdateIndividualDietResponse struct {
-	Message string `json:"message"`
-	Data 	schemas.Diet `json:"data"`
+	Message string       `json:"message"`
+	Data    schemas.Diet `json:"data"`
 }
-
