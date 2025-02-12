@@ -49,5 +49,13 @@ func initializeRoutes(router *gin.Engine) {
 		v1.DELETE("/employee", handler.DeleteEmployeeHandler)
 		v1.PUT("/employees/update/", handler.UpdateEmployeeHandler)
 		v1.GET("/employees", handler.ListEmployeeHandler)
+
+		// Task routes
+		v1.POST("/tasks/create/", handler.CreateTaskHandler)
+		v1.GET("/task", handler.ShowTaskHandler)
+		v1.DELETE("/task", handler.DeleteTaskHandler)
+		v1.PUT("/tasks/update/", handler.UpdateTaskHandler)
+		v1.GET("/tasks", handler.ListTasksHandler)
+		v1.GET("/employee/tasks/:id", handler.ListEmployeeTaskHandler)
 	}
 }

@@ -71,6 +71,7 @@ func InitializePostgres() (*gorm.DB, error) {
 		&schemas.Diet{},
 		&schemas.Weight{},
 		&schemas.Employee{},
+		&schemas.Task{},
 	); err != nil {
 		log.Fatalf("Database migration error: %v", err)
 		return nil, err

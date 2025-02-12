@@ -340,3 +340,51 @@ func (r *UpdateWeightRequest) Validate() error {
 	// If all field or a single field was empty. return false
 	return fmt.Errorf("request body is empty or malformed")
 }
+
+// CreateTaskRequest
+type CreateTaskRequest struct {
+	EmployeeID     string `json:"employee_id"`     // ID do funcionário
+	TaskName       string `json:"task_name"`       // Nome da tarefa
+	TaskDate       string `json:"task_date"`       // Data da tarefa
+	TaskTime       string `json:"task_time"`       // Hora da tarefa
+	TaskConclusion bool   `json:"task_conclusion"` // Conclusão da tarefa
+}
+
+// Validates CreateTaskRequest
+func (r *CreateTaskRequest) Validate() error {
+	if r.EmployeeID == "" && r.TaskName == "" && r.TaskDate == "" && r.TaskTime == "" {
+		return fmt.Errorf("request body is empty or malformed")
+	}
+	if r.EmployeeID == "" {
+		return errParamIsRequired("employee_id", "string")
+	}
+	if r.TaskName == "" {
+		return errParamIsRequired("task_name", "string")
+	}
+	if r.TaskDate == "" {
+		return errParamIsRequired("task_date", "string")
+	}
+	if r.TaskTime == "" {
+		return errParamIsRequired("task_time", "string")
+	}
+	return nil
+}
+
+// UpdateTaskRequest
+type UpdateTaskRequest struct {
+	EmployeeID     string `json:"employee_id"`
+	TaskName       string `json:"task_name"`
+	TaskDate       string `json:"task_date"`
+	TaskTime       string `json:"task_time"`
+	TaskConclusion bool   `json:"task_conclusion"`
+}
+
+// Validates UpdateTaskRequest
+func (r *UpdateTaskRequest) Validate() error {
+	// If any field provided, validation is true
+	if r.EmployeeID != "" || r.TaskName != "" || r.TaskDate != "" || r.TaskTime != "" {
+		return nil
+	}
+	// If all field or a single field was empty. return false
+	return fmt.Errorf("request body is empty or malformed")
+}
