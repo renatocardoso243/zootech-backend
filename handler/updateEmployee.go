@@ -70,6 +70,9 @@ func UpdateEmployeeHandler(ctx *gin.Context) {
 	if request.AdmissionDate != "" {
 		employee.AdmissionDate = request.AdmissionDate
 	}
+	if request.Departament != "" {
+		employee.Departament = request.Departament
+	}
 	if request.WorkRegiment != "" {
 		employee.WorkRegiment = request.WorkRegiment
 	}
