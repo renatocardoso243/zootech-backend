@@ -16,7 +16,7 @@ type User struct {
 // Estrutura dos funcionários
 type Employee struct {
 	ID              uint   `gorm:"primaryKey"`  // Chave primária
-	EmployeeId      string `json:"employee_id"` // ID do funcionário
+	EmployeeId      uint   `json:"employee_id"` // ID do funcionário
 	FullName        string `json:"full_name"`
 	Birthdate       string `json:"birth_date"`
 	Genre           string `json:"genre"`
@@ -40,14 +40,21 @@ type Employee struct {
 
 // Estrutura para as atividades
 type Task struct {
-	ID             uint   `gorm:"primaryKey"`  // Chave primária
-	EmployeeID     string `json:"employee_id"` // Chave estrangeira para Employee
-	TaskName       string `json:"task_name"`
-	TaskDate       string `json:"task_date"`
-	TaskTime       string `json:"task_time"`
-	TaskConclusion bool   `json:"task_conclusion"`
+	ID         uint   `gorm:"primaryKey"`  // Chave primária
+	EmployeeID uint   `json:"employee_id"` // Chave estrangeira para Employee
+	TaskName   string `json:"task_name"`
+	TaskTime   string `json:"task_time"`
+	TaskDay    string `json:"task_day"`
 
 	Employee *Employee `json:"employee,omitempty" gorm:"foreignKey:EmployeeID"` // Relacionamento com Employee
+}
+
+// Estrutura para eventos da propriedade
+type Event struct {
+	ID               uint   `gorm:"primaryKey"` // Chave primária
+	EventName        string `json:"event_name"`
+	EventDescription string `json:"event_description"`
+	EventDate        string `json:"event_date"`
 }
 
 // Estrutura para os animais

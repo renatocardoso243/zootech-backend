@@ -87,7 +87,7 @@ func (r *UpdateAnimalRequest) Validate() error {
 
 // CreateEmployeeRequest
 type CreateEmployeeRequest struct {
-	EmployeeId      string `json:"employee_id"`      // ID do funcionário
+	EmployeeId      uint   `json:"employee_id"`      // ID do funcionário
 	FullName        string `json:"full_name"`        // Nome completo do funcionário
 	Birthdate       string `json:"birthdate"`        // Data de nascimento do funcionário
 	Genre           string `json:"genre"`            // Gênero do funcionário
@@ -109,10 +109,10 @@ type CreateEmployeeRequest struct {
 
 // Validade CreateEmployeeRequest
 func (r *CreateEmployeeRequest) Validate() error {
-	if r.EmployeeId == "" && r.FullName == "" && r.Birthdate == "" && r.Genre == "" && r.CivilStatus == "" && r.Nacionality == "" && r.TaxIdNumber == "" && r.IdentityCard == "" && r.Address == "" && r.Phone == "" && r.Email == "" && r.Role == "" && r.AdmissionDate == "" && r.Departament == "" && r.WorkRegiment == "" && r.Salary == "" && r.BankData == "" {
+	if r.EmployeeId == 0 && r.FullName == "" && r.Birthdate == "" && r.Genre == "" && r.CivilStatus == "" && r.Nacionality == "" && r.TaxIdNumber == "" && r.IdentityCard == "" && r.Address == "" && r.Phone == "" && r.Email == "" && r.Role == "" && r.AdmissionDate == "" && r.Departament == "" && r.WorkRegiment == "" && r.Salary == "" && r.BankData == "" {
 		return fmt.Errorf("request body is empty or malformed")
 	}
-	if r.EmployeeId == "" {
+	if r.EmployeeId == 0 {
 		return errParamIsRequired("employee_id", "string")
 	}
 	if r.FullName == "" {
@@ -168,7 +168,7 @@ func (r *CreateEmployeeRequest) Validate() error {
 
 // UpdateEmployeeRequest
 type UpdateEmployeeRequest struct {
-	EmployeeId      string `json:"employee_id"`
+	EmployeeId      uint   `json:"employee_id"`
 	FullName        string `json:"full_name"`
 	Birthdate       string `json:"birthdate"`
 	Genre           string `json:"genre"`
@@ -191,7 +191,7 @@ type UpdateEmployeeRequest struct {
 // Validates UpdateEmployeeRequest
 func (r *UpdateEmployeeRequest) Validate() error {
 	// If any field provided, validation is true
-	if r.EmployeeId != "" || r.FullName != "" || r.Birthdate != "" || r.Genre != "" || r.CivilStatus != "" || r.Nacionality != "" || r.TaxIdNumber != "" || r.IdentityCard != "" || r.Address != "" || r.Phone != "" || r.Email != "" || r.Role != "" || r.AdmissionDate != "" || r.Departament != "" || r.WorkRegiment != "" || r.Salary != "" || r.BankData != "" {
+	if r.EmployeeId != 0 || r.FullName != "" || r.Birthdate != "" || r.Genre != "" || r.CivilStatus != "" || r.Nacionality != "" || r.TaxIdNumber != "" || r.IdentityCard != "" || r.Address != "" || r.Phone != "" || r.Email != "" || r.Role != "" || r.AdmissionDate != "" || r.Departament != "" || r.WorkRegiment != "" || r.Salary != "" || r.BankData != "" {
 		return nil
 	}
 	// If all fields are empty. return false
@@ -343,48 +343,85 @@ func (r *UpdateWeightRequest) Validate() error {
 
 // CreateTaskRequest
 type CreateTaskRequest struct {
-	EmployeeID     string `json:"employee_id"`     // ID do funcionário
-	TaskName       string `json:"task_name"`       // Nome da tarefa
-	TaskDate       string `json:"task_date"`       // Data da tarefa
-	TaskTime       string `json:"task_time"`       // Hora da tarefa
-	TaskConclusion bool   `json:"task_conclusion"` // Conclusão da tarefa
+	EmployeeID uint   `json:"employee_id"` // ID do funcionário
+	TaskName   string `json:"task_name"`   // Nome da tarefa
+	TaskTime   string `json:"task_time"`   // Hora da tarefa
+	TaskDay    string `json:"task_day"`
 }
 
 // Validates CreateTaskRequest
 func (r *CreateTaskRequest) Validate() error {
-	if r.EmployeeID == "" && r.TaskName == "" && r.TaskDate == "" && r.TaskTime == "" {
+	if r.EmployeeID == 0 && r.TaskName == "" && r.TaskTime == "" && r.TaskDay == "" {
 		return fmt.Errorf("request body is empty or malformed")
 	}
-	if r.EmployeeID == "" {
+	if r.EmployeeID == 0 {
 		return errParamIsRequired("employee_id", "string")
 	}
 	if r.TaskName == "" {
 		return errParamIsRequired("task_name", "string")
 	}
-	if r.TaskDate == "" {
-		return errParamIsRequired("task_date", "string")
-	}
 	if r.TaskTime == "" {
 		return errParamIsRequired("task_time", "string")
+	}
+	if r.TaskDay == "" {
+		return errParamIsRequired("task_day", "string")
 	}
 	return nil
 }
 
 // UpdateTaskRequest
 type UpdateTaskRequest struct {
-	EmployeeID     string `json:"employee_id"`
-	TaskName       string `json:"task_name"`
-	TaskDate       string `json:"task_date"`
-	TaskTime       string `json:"task_time"`
-	TaskConclusion bool   `json:"task_conclusion"`
+	EmployeeID uint   `json:"employee_id"`
+	TaskName   string `json:"task_name"`
+	TaskTime   string `json:"task_time"`
+	TaskDay    string `json:"task_day"`
 }
 
 // Validates UpdateTaskRequest
 func (r *UpdateTaskRequest) Validate() error {
 	// If any field provided, validation is true
-	if r.EmployeeID != "" || r.TaskName != "" || r.TaskDate != "" || r.TaskTime != "" {
+	if r.EmployeeID != 0 || r.TaskName != "" || r.TaskTime != "" || r.TaskDay != "" {
 		return nil
 	}
 	// If all field or a single field was empty. return false
+	return fmt.Errorf("request body is empty or malformed")
+}
+
+// CreateEventRequest
+type CreateEventRequest struct {
+	EventName        string `json:"event_name"`
+	EventDescription string `json:"event_description"`
+	EventDate        string `json:"event_date"`
+}
+
+// CreateEventRequest Validation
+func (r *CreateEventRequest) Validate() error {
+	if r.EventName == "" && r.EventDescription == "" && r.EventDate == "" {
+		return fmt.Errorf("request body is empty or malformed")
+	}
+	if r.EventName == "" {
+		return errParamIsRequired("event_name", "string")
+	}
+	if r.EventDescription == "" {
+		return errParamIsRequired("event_description", "string")
+	}
+	if r.EventDate == "" {
+		return errParamIsRequired("event_date", "string")
+	}
+	return nil
+}
+
+// UpdateEventRequest
+type UpdateEventRequest struct {
+	EventName        string `json:"event_name"`
+	EventDescription string `json:"event_description"`
+	EventDate        string `json:"event_date"`
+}
+
+// Validate UpdateEventRequest
+func (r *UpdateEventRequest) Validate() error {
+	if r.EventName != "" || r.EventDescription != "" || r.EventDate != "" {
+		return nil
+	}
 	return fmt.Errorf("request body is empty or malformed")
 }

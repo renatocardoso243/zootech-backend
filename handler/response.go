@@ -128,3 +128,15 @@ type UpdateIndividualDietResponse struct {
 	Message string       `json:"message"`
 	Data    schemas.Diet `json:"data"`
 }
+
+// Task
+// Event
+type CreateEventResponse struct {
+	Message string        `json:"message"`
+	Data    schemas.Event `json:"data"`
+}
+
+type DeleteEventResponse struct {
+	Message string        `json:"message"`
+	Data    schemas.Event `json:"data"`
+}

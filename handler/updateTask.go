@@ -31,7 +31,7 @@ func UpdateTaskHandler(ctx *gin.Context) {
 	}
 
 	// Update task
-	if request.EmployeeID != "" {
+	if request.EmployeeID != 0 {
 		task.EmployeeID = request.EmployeeID
 	}
 
@@ -39,12 +39,12 @@ func UpdateTaskHandler(ctx *gin.Context) {
 		task.TaskName = request.TaskName
 	}
 
-	if request.TaskDate != "" {
-		task.TaskDate = request.TaskDate
-	}
-
 	if request.TaskTime != "" {
 		task.TaskTime = request.TaskTime
+	}
+
+	if request.TaskDay != "" {
+		task.TaskDay = request.TaskDay
 	}
 
 	if err := db.Save(&task).Error; err != nil {

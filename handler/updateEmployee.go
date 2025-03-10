@@ -31,7 +31,7 @@ func UpdateEmployeeHandler(ctx *gin.Context) {
 	}
 
 	// Update employee
-	if request.EmployeeId != "" {
+	if request.EmployeeId != 0 {
 		employee.EmployeeId = request.EmployeeId
 	}
 	if request.FullName != "" {

@@ -19,11 +19,10 @@ func CreateTaskHandler(ctx *gin.Context) {
 	}
 
 	task := schemas.Task{
-		EmployeeID:     request.EmployeeID,
-		TaskName:       request.TaskName,
-		TaskDate:       request.TaskDate,
-		TaskTime:       request.TaskTime,
-		TaskConclusion: request.TaskConclusion,
+		EmployeeID: request.EmployeeID,
+		TaskName:   request.TaskName,
+		TaskTime:   request.TaskTime,
+		TaskDay:    request.TaskDay,
 	}
 
 	// Save task in database

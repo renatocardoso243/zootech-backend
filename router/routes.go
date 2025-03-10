@@ -57,5 +57,12 @@ func initializeRoutes(router *gin.Engine) {
 		v1.PUT("/tasks/update/", handler.UpdateTaskHandler)
 		v1.GET("/tasks", handler.ListTasksHandler)
 		v1.GET("/employee/tasks/:id", handler.ListEmployeeTaskHandler)
+
+		// Event routes
+		v1.POST("/events/create/", handler.CreateTaskHandler)
+		v1.GET("/event", handler.ShowTaskHandler)
+		v1.DELETE("/event", handler.DeleteTaskHandler)
+		v1.PUT("/events/update/", handler.UpdateTaskHandler)
+		v1.GET("/events", handler.ListTasksHandler)
 	}
 }
